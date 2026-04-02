@@ -35,7 +35,6 @@ icon = Image.open('images/back.png' ).resize( (64, 64) )
 img_back.paste( icon, (4, 4), icon )
 
 
-
 class Icons( Enum ):
   EMPTY = img_empty
   EXIT = img_exit

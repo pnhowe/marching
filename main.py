@@ -1,7 +1,3 @@
-import threading
-
-from StreamDeck.Transport.Transport import TransportError
-
 from lights import LightCtrl
 from streamdeck import StreamDeck
 from state import State
@@ -51,6 +47,7 @@ def main():
       api.stop()
 
   print( 'Done!' )
+
 
 if __name__ == '__main__':
    main()

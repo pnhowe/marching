@@ -2,7 +2,7 @@ import json
 import math
 
 
-RESOLUTION = 100 # how many "postion" of the fseq per step in the plan
+RESOLUTION = 100  # how many "postion" of the fseq per step in the plan
 
 
 def interpolate( y1, y2, x1, x2, offset ):
@@ -55,7 +55,7 @@ class MixerCtrl():
 
   def writePlan( self, filename ):
     result = {}
-    for i  in range( 0, len( self.name ) ):
+    for i in range( 0, len( self.name ) ):
       timeline = {}
       result[ self.name[ i ] ] = { 'path': self.path[ i ], 'timeline': timeline }
 

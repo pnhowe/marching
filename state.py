@@ -21,6 +21,7 @@ FASTER_KEY = 8
 RESET_KEY = 10
 EXIT_KEY = 14
 
+
 class Command( Enum ):
   NOP = 0
   SET_MOVEMENT = 10
@@ -71,6 +72,7 @@ class State:
 
   def load_bookmarks( self ):
     current_movement = None
+
     def callback( command, data, pos ):
       nonlocal current_movement
       if command == Command.SET_MOVEMENT.value:

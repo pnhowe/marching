@@ -12,11 +12,13 @@ DDP_PORT = 4048
 DDP_HEADER_SIZE = 10
 DDP_MAX_DATA = 1440  # safe UDP payload size
 
+
 class State( Enum ):
   PAUSED = 1
   RUNNING = 2
 
 # 40 FPS (step time 50) is 100 bpm
+
 
 class LightCtrl():
   def __init__( self, fseq_filename, ddp_ip ):
@@ -66,7 +68,7 @@ class LightCtrl():
     # in theory self.data_start_pos + ( self.channel_count * self.frame_count ) should equal file_size
     # but for some reason the files seem to be padded with other stuff
     if self.stop_pos > file_size:
-      raise ValueError( f'FSEQ file size is to small' )
+      raise ValueError( 'FSEQ file size is to small' )
 
     self.step_time_s = self.step_time_ms / 1000
 
@@ -121,7 +123,7 @@ class LightCtrl():
 
   def scan_for_commands( self, callback ):  # callback should accept ( command, data, pos in ms )
     self.jump_to( 0 )
-    while( self.file.tell() < self.stop_pos ):
+    while ( self.file.tell() < self.stop_pos ):
       cur_pos = self.file.tell()
       frame = self.file.read( self.channel_count )
       if frame[0] != 0:
@@ -151,13 +153,13 @@ class LightCtrl():
         flags |= 0x02  # end of frame
 
       header = struct.pack(
-        '!BBBBIH',
-        0x41,               # DDP version
-        flags,
-        packet_sequence,
-        0x00,               # data type (RGB)
-        offset,
-        len( chunk )
+          '!BBBBIH',
+          0x41,               # DDP version
+          flags,
+          packet_sequence,
+          0x00,               # data type (RGB)
+          offset,
+          len( chunk )
       )
 
       self.sock.sendto( header + chunk, self.addr )
